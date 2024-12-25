@@ -32,16 +32,16 @@ export class Firebase {
     }));
 
     console.log(historyList);
-    sessionStorage.setItem("history-list", JSON.stringify(historyList));
+    sessionStorage.setItem('history-list', JSON.stringify(historyList));
 
-    const selfSnapshot = await getDocs(collection(db, "self-list"));
+    const selfSnapshot = await getDocs(collection(db, 'self-list'));
     const selfList = selfSnapshot.docs.map((doc) => ({
       ...doc.data(),
       docID: doc.id,
     }));
 
     console.log(selfList);
-    sessionStorage.setItem("partner-list", JSON.stringify(selfList));
+    sessionStorage.setItem('partner-list', JSON.stringify(selfList));
     const partnerSnapshot = await getDocs(collection(db, "partner-list"));
     const partnerList = partnerSnapshot.docs.map((doc) => ({
       ...doc.data(),
@@ -49,7 +49,7 @@ export class Firebase {
     }));
 
     console.log(partnerList);
-    sessionStorage.setItem("self-list", JSON.stringify(partnerList));
+    sessionStorage.setItem('self-list', JSON.stringify(partnerList));
   }
 
   async addData(collectionName, data) {
@@ -66,9 +66,9 @@ export class Firebase {
   async deleteData(collectionName, docID) {
     console.log(collectionName, docID);
     if (collectionName === "partner-list") {
-      docRef = await deleteDoc(collection(db, "self-list"), data);
+      docRef = await deleteDoc(collection(db, "self-list"), docID);
     } else if (collectionName === "self-list") {
-      docRef = await deleteDoc(collection(db, "partner-list"), data);
+      docRef = await deleteDoc(collection(db, "partner-list"), docID);
     }
   }
 }
