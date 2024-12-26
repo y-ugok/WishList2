@@ -66,9 +66,9 @@ export class Firebase {
   async deleteData(collectionName, docID) {
     console.log(collectionName, docID);
     if (collectionName === "partner-list") {
-      await deleteDoc(doc(db, "self-list", docID));
+      docRef = await deleteDoc(doc(db, "self-list", docID));
     } else if (collectionName === "self-list") {
-      await deleteDoc(doc(db, "partner-list", docID));
+      docRef = await deleteDoc(doc(db, "partner-list", docID));
     }
   }
 }
