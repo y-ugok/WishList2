@@ -51,11 +51,10 @@ export class Firebase {
     console.log(partnerList);
     sessionStorage.setItem("self-list", JSON.stringify(partnerList));
   }
-
+  let docRef;
   async addData(collectionName, data) {
     // console.log(collectionName);
     // console.log(data);
-    let docRef;
     if (collectionName === "partner-list") {
       docRef = await addDoc(collection(db, "self-list"), data);
     } else if (collectionName === "self-list") {
