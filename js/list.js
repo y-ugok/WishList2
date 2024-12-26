@@ -167,7 +167,7 @@ function loadList() {
       }
 
       // firebaseから削除
-      await firestore.deleteData(listKey, compItem.docID);
+      await firestore.deleteData("partner-list", compItem.docID);
 
       // 履歴に記録（in history.js）
       await completeHistory(compItem);
@@ -177,7 +177,7 @@ function loadList() {
 
       // DOMから削除
       li.remove();
-      show(register);
+      // show(register);
       adjustDialogPosition(register);
     });
   });
