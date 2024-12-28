@@ -99,6 +99,7 @@ async function saveToSessionStorage(item) {
 
   // 履歴を更新（in history.js）
   registerHistory(item.text);
+  loadList();
 }
 
 // セッションストレージからアイテムを削除;

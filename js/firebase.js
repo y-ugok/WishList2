@@ -42,7 +42,6 @@ export class Firebase {
 
     console.log(selfList);
     sessionStorage.setItem("partner-list", JSON.stringify(selfList));
-    //self-listをparter-listにする
     const partnerSnapshot = await getDocs(collection(db, "partner-list"));
     const partnerList = partnerSnapshot.docs.map((doc) => ({
       ...doc.data(),
@@ -54,8 +53,6 @@ export class Firebase {
   }
 
   async addData(collectionName, data) {
-    // console.log(collectionName);
-    // console.log(data);
     let docRef;
     if (collectionName === "partner-list") {
       docRef = await addDoc(collection(db, "self-list"), data);
@@ -67,12 +64,9 @@ export class Firebase {
   async deleteData(collectionName, docID) {
     console.log(collectionName, docID);
     if (collectionName === "partner-list") {
-      docRef = await deleteDoc(doc(db, "self-list", docID));
+      await deleteDoc(doc(db, "self-list", docID));
     } else if (collectionName === "self-list") {
-      docRef = await deleteDoc(doc(db, "partner-list", docID));
+      await deleteDoc(doc(db, "partner-list", docID));
     }
-    // //片方はこのままでいい
-    // docRef = await deleteDoc(doc(db, collectionName, docID));
-    // selfListの時はpartnerList、partnerListの時はselfListというのをif文で書く
   }
 }
